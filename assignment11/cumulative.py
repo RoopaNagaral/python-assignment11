@@ -51,7 +51,7 @@ try:
     
     #df = pldata.iris(return_type='pandas') # Returns a DataFrame.  plotly.data has a number of sample datasets included.
     fig = px.scatter(df, x='strength', y='frequency', color="direction", title="Strength vs Frequency by Direction", labels={"strength":"Strength", "frequency":"Frequency"})
-    fig.write_html("wind.html", auto_open=True)    
+    fig.write_html("assignment11/wind.html", auto_open=True)    
          
 except Exception as e:
     conn.rollback()
