@@ -22,7 +22,7 @@ try:
     df = pd.read_sql_query(sql_statement, conn)
     
     # Bar Plot
-    df.plot(x="last_name", y="revenue", kind="bar", color="skyblue", title="Employees Revenue")
+    df.plot(x="last_name", y="revenue", kind="bar", color="skyblue", title="Employees Revenue", xlabel="Last Name", ylabel="Revenue")
     plt.show()
         
 except Exception as e:
