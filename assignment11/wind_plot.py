@@ -33,7 +33,7 @@ try:
     #df = pldata.iris(return_type='pandas') # Returns a DataFrame.  plotly.data has a number of sample datasets included.
     fig = px.scatter(df, x='strength', y='frequency', color="direction", title="Strength vs Frequency by Direction", labels={"strength":"Strength", "frequency":"Frequency"})
     # --- Save HTML file in assignment11 folder ---
-    output_path = "assignment11/wind.html"
+    output_path = "wind.html"
     fig.write_html(output_path, include_plotlyjs="cdn")
 
     print(f"Saved interactive plot to {output_path}")
