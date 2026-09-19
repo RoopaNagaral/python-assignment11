@@ -1,20 +1,8 @@
-import sqlite3
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.data as pldata
-import webbrowser
 from pathlib import Path
-
-# Note, you need to create a 'db' directory if it isn't already in your workspace
-
-DB_PATH = "../db/lesson.db"
-
-conn = sqlite3.connect(DB_PATH)
-cursor = conn.cursor()
-    
-conn.execute("PRAGMA foreign_keys = 1;")
 
 try:
     #Task 3: Interactive Visualizations with Plotly
@@ -41,7 +29,4 @@ try:
     print(f"Saved interactive plot to {output_path}")
     
 except Exception as e:
-    conn.rollback()
     print("Transaction failed:", e)
-finally:
-    conn.close()
