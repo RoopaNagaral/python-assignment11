@@ -5,10 +5,11 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.data as pldata
 import webbrowser
+from pathlib import Path
 
 # Note, you need to create a 'db' directory if it isn't already in your workspace
 
-DB_PATH = "db/lesson.db"
+DB_PATH = "../db/lesson.db"
 
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
@@ -26,21 +27,18 @@ try:
     
     df['strength'] = (
         df['strength']
-        .str.replace(r'[^0-9\.]', '', regex=True)   # remove anything that's not a digit or dot
+        .str.replace(r"-.*$|\+$", '', regex=True)   # remove anything that's not a digit or dot
         .astype(float)                              # convert to float
     )
     
     #df = pldata.iris(return_type='pandas') # Returns a DataFrame.  plotly.data has a number of sample datasets included.
     fig = px.scatter(df, x='strength', y='frequency', color="direction", title="Strength vs Frequency by Direction", labels={"strength":"Strength", "frequency":"Frequency"})
+   
     # --- Save HTML file in assignment11 folder ---
-    output_path = "wind.html"
-    fig.write_html(output_path, include_plotlyjs="cdn")
+    output_path = output_path = Path(__file__).resolve().parent / "wind.html"
+    fig.write_html(output_path, include_plotlyjs=True, auto_open=True)
 
     print(f"Saved interactive plot to {output_path}")
-
-    # --- Load/verify by opening in browser ---
-    abs_path = os.path.abspath(output_path)
-    webbrowser.open(f"file://{abs_path}")
     
 except Exception as e:
     conn.rollback()

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 #Task 1: Plotting with Pandas
 # Note, you need to create a 'db' directory if it isn't already in your workspace
-DB_PATH = "db/lesson.db"
+DB_PATH = "../db/lesson.db"
 
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
@@ -19,10 +19,10 @@ try:
         JOIN line_items l ON o.order_id = l.order_id JOIN products p ON l.product_id = p.product_id 
         GROUP BY e.employee_id;
     """
-    df = pd.read_sql_query(sql_statement, conn)
+    employee_results = pd.read_sql_query(sql_statement, conn)
     
     # Bar Plot
-    df.plot(x="last_name", y="revenue", kind="bar", color="skyblue", title="Employees Revenue", xlabel="Last Name", ylabel="Revenue")
+    employee_results.plot(x="last_name", y="revenue", kind="bar", color="skyblue", title="Employees Revenue", xlabel="Last Name", ylabel="Revenue")
     plt.show()
         
 except Exception as e:

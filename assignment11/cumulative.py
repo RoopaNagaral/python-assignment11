@@ -7,7 +7,7 @@ import plotly.data as pldata
 
 # Note, you need to create a 'db' directory if it isn't already in your workspace
 
-DB_PATH = "db/lesson.db"
+DB_PATH = "../db/lesson.db"
 
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
@@ -29,7 +29,6 @@ try:
         return totals_above.sum()
 
     df['cumulative'] = df.apply(cumulative, axis=1)
-    df['cumulative'] = df['total_price'].cumsum()
     
     # Line Plot
     df.plot(x="order_id", y="cumulative", kind="line", title="Cumulative Revenue Over Time", xlabel="Orders", ylabel="Cumulative Revenue", grid=True)
